@@ -19,6 +19,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  notes: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'notes',
+    required: false
+  },
   createdAt: {
     type: Number,
     default: Date.now()

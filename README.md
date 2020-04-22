@@ -1,5 +1,4 @@
-# Project 3 - BRVENDING
-
+# BLOGNOTES
 ## Introduction
 
 > TODO

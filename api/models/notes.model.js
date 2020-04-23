@@ -21,7 +21,7 @@ const notesSchema = new mongoose.Schema({
     default: 'general'
   },
   date: {
-    type: Date,
+    type: String,
     required: false
   },
   createdAt: {

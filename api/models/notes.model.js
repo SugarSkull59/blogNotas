@@ -1,8 +1,11 @@
 const mongoose = require('mongoose')
 
 const notesSchema = new mongoose.Schema({
-  owner: String,
-  /* idUser */
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    required: false
+  },
   title: {
     type: String,
     required: true
@@ -17,11 +20,14 @@ const notesSchema = new mongoose.Schema({
     required: true,
     default: 'general'
   },
+  date: {
+    type: Date,
+    required: false
+  },
   createdAt: {
     type: Number,
     default: Date.now()
   }
-
 })
 
 const notesModel = mongoose.model('notes', notesSchema)

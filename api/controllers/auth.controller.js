@@ -1,4 +1,4 @@
-const UserModel = require('../models/user.model')
+const User = require('../models/user.model')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { handleError } = require('../utils')
@@ -8,12 +8,11 @@ module.exports = {
   login
 }
 
-function signup (req, res) {
+function signup(req, res) {
   if (!req.body.password) {
     res.json({ error: 'Password required' })
   }
-
-  UserModel
+  User
     .create({ ...req.body, password: bcrypt.hashSync(req.body.password, 10) })
     .then(() => {
       const token = jwt.sign(
@@ -27,8 +26,8 @@ function signup (req, res) {
       res.status(403).json({ error: err })
     })
 }
-function login (req, res) {
-  UserModel
+function login(req, res) {
+  User
     .findOne({ email: req.body.email })
     .then(user => {
       if (!user) { return res.json({ error: 'wrong email' }) }

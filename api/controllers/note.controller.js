@@ -12,17 +12,15 @@ module.exports = {
 }
 
 function getAllNotes(req, res) {
-  const query = {}
+  const query = { owner: res.locals.user._id }
+
   if (req.query.category) {
     query.category = { $regex: `${req.query.category}`, $options: 'i' }
   }
   if (req.query.date) {
     query.date = { $eq: `${req.query.date}` }
   }
-  if (req.query.category && req.query.date) {
-    query.category = { $regex: `${req.query.category}`, $options: 'i' }
-    query.date = { $eq: `${req.query.date}` }
-  }
+  console.log('DENTRO DEL API');
   Note
     .find(query)
     .then(response => res.json(response))

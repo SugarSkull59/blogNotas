@@ -13,10 +13,12 @@ module.exports = {
 
 function getAllNotes(req, res) {
   const query = {}
-  // if (req.query.category) {
-  //   console.log('dentro del if');
-  //   query.category = { $regex: `${req.query.category}`, $options: 'i' }
-  // }
+  if (req.query.category) {
+    query.category = { $regex: `${req.query.category}`, $options: 'i' }
+  }
+  if (req.query.date) {
+    query.date = { $eq: `${req.query.date}` }
+  }
   if (req.query.category && req.query.date) {
     query.category = { $regex: `${req.query.category}`, $options: 'i' }
     query.date = { $eq: `${req.query.date}` }

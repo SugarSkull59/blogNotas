@@ -42,7 +42,7 @@ function login(req, res) {
           { expiresIn: '1h' }
         )
 
-        return res.json({ token: token, email: user.email })
+        return res.json({ token: token, email: user.email, name: user.name })
       })
     })
     .catch(err => handleError(err, res))
